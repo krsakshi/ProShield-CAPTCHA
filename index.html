@@ -3,22 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAPTCHA Example</title>
+    <title>Simple CAPTCHA</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Simple CAPTCHA</h1>
-        <form action="verify.php" method="post">
-            <div class="captcha">
-                <img src="captcha.php" alt="CAPTCHA Image">
-            </div>
-            <div class="input-field">
-                <label for="captcha">Enter CAPTCHA:</label>
-                <input type="text" id="captcha" name="captcha" required>
-            </div>
-            <button type="submit">Submit</button>
+        <div class="captcha-container">
+            <canvas id="captchaCanvas" width="150" height="50"></canvas>
+            <button type="button" id="refreshCaptcha" aria-label="Refresh CAPTCHA">
+                <!-- Inline SVG for refresh icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 10V6H14V3L10 7L14 11V8H17C19.21 8 21 9.79 21 12C21 14.21 19.21 16 17 16H15V18H17C20.31 18 23 15.31 23 12C23 8.69 20.31 6 17 6H16.5L17 10Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+        <form id="captchaForm">
+            <label for="captchaInput">Enter CAPTCHA:</label>
+            <input type="text" id="captchaInput" required>
         </form>
+        <div class="buttons-container">
+            <button type="submit" form="captchaForm">Submit</button>
+            <button type="button" id="refreshCaptcha" aria-label="Refresh CAPTCHA">
+                <!-- Inline SVG for refresh icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 10V6H14V3L10 7L14 11V8H17C19.21 8 21 9.79 21 12C21 14.21 19.21 16 17 16H15V18H17C20.31 18 23 15.31 23 12C23 8.69 20.31 6 17 6H16.5L17 10Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+        <p id="resultMessage"></p>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
